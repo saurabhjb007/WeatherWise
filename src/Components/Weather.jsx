@@ -13,7 +13,7 @@ import humidity_icon from "../assets/humidity.png";
 
 const Weather = () => {
   const inputRef = useRef();
-  const [weatherData, setweatherData] = useState(false);
+  const [weatherData, setWeatherData] = useState(null);
 
   const allIcons = {
     "01d": clear_icon,
@@ -49,7 +49,7 @@ const Weather = () => {
         return;
       }
       const icon = allIcons[data.weather[0].icon] || clear_icon;
-      setweatherData({
+      setWeatherData({
         humidity: data.main.humidity,
         windSpeed: data.wind.speed,
         temperature: Math.floor(data.main.temp),
@@ -57,8 +57,11 @@ const Weather = () => {
         icon: icon,
       });
       toast.success(`Weather data for ${data.name} fetched successfully`);
+
+      // Clear the input field
+      inputRef.current.value = "";
     } catch (error) {
-      setweatherData(false);
+      setWeatherData(null);
       toast.error("Error while fetching the data");
     }
   };
@@ -78,7 +81,7 @@ const Weather = () => {
           onClick={() => search(inputRef.current.value)}
         />
       </div>
-      {weatherData ? (
+      {weatherData && (
         <>
           <img className="weather-icon" src={weatherData.icon} alt="" />
           <p className="temperature">{weatherData.temperature}°C</p>
@@ -100,8 +103,6 @@ const Weather = () => {
             </div>
           </div>
         </>
-      ) : (
-        <></>
       )}
     </div>
   );
