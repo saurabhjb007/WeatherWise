@@ -88,3 +88,24 @@
       }
       
 }
+@media(max-width:350px){ 
+  .weather {
+    padding: 50px 10px;
+  }
+  .search-bar {
+    gap: 5px;
+  }
+  .search-bar input {
+    width: 220px;
+  }
+  .search-bar img {
+    width: 50px;
+    padding: 15px;
+    border-radius: 50%;
+    cursor: pointer;
+    background-color: #ebfffc;
+  }
+  .weather-icon {
+    width: 100px;
+  }
+}

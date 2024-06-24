@@ -48,7 +48,6 @@ const Weather = () => {
         toast.error(data.message);
         return;
       }
-      console.log(data);
       const icon = allIcons[data.weather[0].icon] || clear_icon;
       setweatherData({
         humidity: data.main.humidity,
